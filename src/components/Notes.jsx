@@ -1,13 +1,20 @@
 import React from 'react'
 import Note from './Note'
-import notes from '../notes'
 
-const Notes = () => {
+
+const Notes = ({ notes, setNotes }) => {
+
+    function deleteNote(id) {
+        setNotes(notes.filter((data, index) => {
+            return index !== id;
+        }))
+    }
+
     return (
         notes.map((data, key) => {
             return (
                 <>
-                    <Note key={key} title={data.title} content={data.content} />
+                    <Note key={key} id={key} title={data.title} content={data.content} deleteNote={deleteNote} />
                 </>
             )
 
